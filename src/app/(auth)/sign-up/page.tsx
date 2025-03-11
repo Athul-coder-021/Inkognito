@@ -51,7 +51,7 @@ export default function SignUpForm() {
                 setUsernameMessage('');//Reset the message
 
                 try {
-                    const response = await axios.get<ApiResponse>('/api/check-username-unique?username=${username}');
+                    const response = await axios.get<ApiResponse>(`/api/check-username-unique?username=${username}`);
                     let message = response.data.message;
                     setUsernameMessage(message);
                 }
@@ -64,9 +64,9 @@ export default function SignUpForm() {
                 finally {
                     setIsCheckingUsername(false);
                 }
-                checkUsernameUnique();
             }
         };
+        checkUsernameUnique();
     }, [username]);
 
     //data mai username email password ayega
