@@ -4,7 +4,7 @@ import dbConnect from '@/lib/dbConnect';
 import { authOptions } from '../../auth/[...nextauth]/options';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function DELETE(req: NextRequest, { params }: { params: { messageid: string } }) {
+export async function DELETE(req: NextRequest) {
     await dbConnect();
 
     const session = await getServerSession(authOptions);
@@ -15,7 +15,16 @@ export async function DELETE(req: NextRequest, { params }: { params: { messageid
         );
     }
 
-    const { messageid } = params;
+    // Extract message ID from request URL
+    const urlParts = req.nextUrl.pathname.split('/');
+    const messageid = urlParts[urlParts.length - 1];
+
+    if (!messageid) {
+        return NextResponse.json(
+            { message: 'Message ID is required', success: false },
+            { status: 400 }
+        );
+    }
 
     try {
         const updateResult = await UserModel.updateOne(
