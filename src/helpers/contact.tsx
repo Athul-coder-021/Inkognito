@@ -7,7 +7,7 @@ import axios, { AxiosError } from 'axios';
 import { ApiResponse } from '@/types/ApiResponse';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
-import { Separator } from '@/components/ui/separator';
+// import { Separator } from '@/components/ui/separator';
 
 // Define Zod schema
 const MessageSchema = z.object({

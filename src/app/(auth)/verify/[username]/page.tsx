@@ -6,7 +6,7 @@ import { verifySchema } from "@/schemas/verifySchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import React, { use } from 'react'
+import React from 'react'
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import axios, { AxiosError } from "axios";

@@ -9,9 +9,9 @@ import { signUpSchema } from '@/schemas/signUpSchema';
 import { useEffect, useState } from 'react';
 import { useDebounceCallback } from 'usehooks-ts'
 import axios, { AxiosError } from 'axios';
-import { ApiError } from "next/dist/server/api-utils"
+// import { ApiError } from "next/dist/server/api-utils"
 import { ApiResponse } from "@/types/ApiResponse"
-import { set } from "mongoose"
+// import { set } from "mongoose"
 import {
     Form,
     FormControl,
@@ -52,7 +52,7 @@ export default function SignUpForm() {
 
                 try {
                     const response = await axios.get<ApiResponse>(`/api/check-username-unique?username=${username}`);
-                    let message = response.data.message;
+                    const message = response.data.message;
                     setUsernameMessage(message);
                 }
                 catch (error) {
@@ -88,7 +88,7 @@ export default function SignUpForm() {
             const axiosError = error as AxiosError<ApiResponse>;
 
             //Default error message
-            let errorMessage = axiosError.response?.data.message ?? 'Error during sign up';
+            const errorMessage = axiosError.response?.data.message ?? 'Error during sign up';
 
             toast({
                 title: 'Sign Up Failed',
